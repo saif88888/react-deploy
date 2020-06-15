@@ -11,17 +11,15 @@ class App extends Component {
   };
 
   deleteItem = (id) => {
-    let items = this.state.items.filter((item) => {
+    this.setState({ items: this.state.items.filter((item) => {
       return item.id !== id;
-    });
-    this.setState({ items });
+    }) });
   };
 
   addItem = (item) => {
     item.id = Math.random();
-    let items = this.state.items;
-    items.push(item);
-    this.setState({ items });
+    const { items } = this.state; // remember object destructuring?
+    this.setState({ items: items.concat(item) });
   };
   render() {
     return (
